@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { ref, onMounted } from 'vue';
+import { ref, onBeforeMount } from 'vue';
 import { defaultUrlHead } from '@/config'
 // 从配置中获取云文件前缀
 
@@ -34,7 +34,7 @@ export default function useCloudFiles(urlList: string[]) {
     };
     
     // 在组件挂载时自动加载
-    onMounted(() => {
+    onBeforeMount(() => {
         loadCloudFiles();
     });
     

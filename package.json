@@ -29,9 +29,8 @@
     "build:mp-qq": "uni build -p mp-qq",
     "build:mp-toutiao": "uni build -p mp-toutiao",
     "build:mp-harmony": "uni build -p mp-harmony",
-    "build:mp-weixin": "uni build -p mp-weixin && npm run copy-cloudfunctions",
+    "build:mp-weixin": "uni build -p mp-weixin",
     "build:mp-xhs": "uni build -p mp-xhs",
-    "copy-cloudfunctions": "xcopy /E /I /Y cloudfunctions dist/build/mp-weixin/cloudfunctions",
     "build:quickapp-webview": "uni build -p quickapp-webview",
     "build:quickapp-webview-huawei": "uni build -p quickapp-webview-huawei",
     "build:quickapp-webview-union": "uni build -p quickapp-webview-union",
@@ -54,6 +53,7 @@
     "@dcloudio/uni-mp-weixin": "3.0.0-4080420251103001",
     "@dcloudio/uni-mp-xhs": "3.0.0-4080420251103001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-4080420251103001",
+    "pinia": "^2.3.1",
     "uview-plus": "^3.6.29",
     "vue": "^3.4.21",
     "vue-i18n": "^9.1.9"

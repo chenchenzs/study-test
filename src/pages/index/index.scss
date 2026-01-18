@@ -1,23 +1,33 @@
 $primary-color: #8f8f94;
 $font-size: 36rpx;
-$margin-top: 200rpx;
-$margin-bottom: 50rpx;
 $logo-size: 200rpx;
 
 .content {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
 }
 
-.logo {
-  height: $logo-size;
-  width: $logo-size;
-  margin-top: $margin-top;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: $margin-bottom;
+.bg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+}
+
+.start-btn {
+  position: absolute;
+  top: 54%;
+  left: 20%;
+  height: 100rpx;
+  // width: 300rpx;
 }
 
 .text-area {
@@ -26,6 +36,43 @@ $logo-size: 200rpx;
 }
 
 .title {
-  font-size: $font-size;
-  color: $primary-color;
+  font-size: 60rpx;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow:
+    0 2rpx 4rpx rgba(0, 0, 0, 0.5),
+    0 4rpx 8rpx rgba(0, 0, 0, 0.3),
+    0 8rpx 16rpx rgba(0, 0, 0, 0.2),
+    0 0 20rpx rgba(255, 255, 255, 0.3); /* 增加基础亮度 */
+  letter-spacing: 4rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #ffffff 50%, #f8f8f8 100%); /* 增加渐变亮度 */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGlow 3s ease-in-out infinite alternate; /* 增加动画时长 */
+}
+
+/* 淡出时暂停发光动画 */
+.title.fade-out {
+  animation: none !important;
+}
+
+@keyframes titleGlow {
+  from {
+    text-shadow:
+      0 2rpx 6rpx rgba(0, 0, 0, 0.6),
+      0 4rpx 12rpx rgba(0, 0, 0, 0.4),
+      0 8rpx 20rpx rgba(0, 0, 0, 0.3),
+      0 0 25rpx rgba(255, 255, 255, 0.4); /* 增加起始亮度 */
+    transform: translateY(2rpx); /* 起始位置向下微调 */
+  }
+
+  to {
+    text-shadow:
+      0 6rpx 12rpx rgba(0, 0, 0, 0.7),
+      0 12rpx 24rpx rgba(0, 0, 0, 0.5),
+      0 20rpx 40rpx rgba(0, 0, 0, 0.3),
+      0 0 50rpx rgba(255, 255, 255, 0.6); /* 大幅增加结束亮度 */
+    transform: translateY(-6rpx); /* 增加垂直位移幅度 */
+  }
 }

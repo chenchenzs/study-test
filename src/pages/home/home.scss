@@ -1,0 +1,66 @@
+.content {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    // background-color: rgb(234 226 226);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+}
+
+/* 模块容器 */
+.module-container {
+    width: 100%;
+    display: flex;
+    margin-top: 25px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40rpx;
+}
+
+/* 模块项基础样式 */
+.module-item {
+    width: 90%;
+    height: 160rpx;
+    /* 180px约等于360rpx */
+    border-radius: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8rpx 16rpx rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.module-item:active {
+    transform: scale(0.98);
+}
+
+/* 知识库模块样式 */
+.knowledge-base {
+    background-color: rgb(6 33 13 / 90%);
+}
+
+/* 学习检测模块样式 */
+.learning-test {
+    background-color: rgb(101 74 167 / 90%);
+}
+
+/* 模块标题样式 */
+.module-title {
+    font-size: 48rpx;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+    letter-spacing: 4rpx;
+}

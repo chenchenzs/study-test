@@ -1,0 +1,144 @@
+.content {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-item {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.item-wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 30rpx;
+    box-sizing: border-box;
+}
+
+// 题目标题区域
+.item-title {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #333;
+    padding-bottom: 20rpx;
+    border-bottom: 2rpx solid #e0e0e0;
+    margin-bottom: 30rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+// 右侧图标样式
+.right-icon {
+    width: 70rpx;
+    height: 70rpx;
+    margin-right: 10rpx;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.right-icon:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+.right-icon:active {
+    opacity: 0.6;
+    transform: scale(0.95);
+}
+
+// 题目内容区域
+.item-content {
+    height: 40vh;
+    max-height: 600rpx;
+    font-size: 28rpx;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 20rpx;
+    overflow-y: auto;
+    
+    // 富文本代码块样式
+    .code {
+        background-color: #2d2d2d;
+        color: #dcdcdc;
+        padding: 20rpx;
+        border-radius: 8rpx;
+        font-family: 'Courier New', 'Menlo', 'Monaco', monospace;
+        font-size: 24rpx;
+        line-height: 1.5;
+        margin: 20rpx 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-x: auto;
+    }
+    
+    // 添加内边距确保内容显示正常
+    padding: 0 5rpx;
+}
+
+// 输入框区域
+.item-input {
+    margin-bottom: 10rpx;
+    position: relative;
+    margin-top: 10rpx;
+}
+
+// u-input 自定义样式
+.u-input {
+    border: 2rpx solid #e0e0e0 !important;
+    border-radius: 16rpx !important;
+    padding: 0 28rpx !important;
+    box-sizing: border-box !important;
+    background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%) !important;
+    min-height: 90rpx !important;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.u-input:hover {
+    border-color: #c0c0c0 !important;
+    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%) !important;
+}
+
+.u-input:focus-within {
+    border-color: #9326e1df !important;
+    box-shadow: 0 0 0 8rpx rgba(141, 12, 239, 0.08) !important;
+    background: #ffffff !important;
+}
+
+.u-input__input {
+    font-size: 32rpx !important;
+    color: #333 !important;
+    padding: 35rpx 0 !important;
+    line-height: 1.6 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+}
+
+.u-input__placeholder {
+    font-size: 28rpx !important;
+    color: #999 !important;
+    opacity: 0.6 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+    transition: opacity 0.3s ease !important;
+}
+
+.u-input:focus-within .u-input__placeholder {
+    opacity: 0.4 !important;
+}
+

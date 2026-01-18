@@ -1,34 +1,53 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
+    <image class="bg" :src="bgImageUrl[0]" />
+
+    <view class="start-btn" @click="handleClick">
+      <view class="text-area">
+        <text class="title" :class="{ 'fade-out': isFading }" :style="{ opacity: fadeOpacity }">{{ title }}</text>
+      </view>
     </view>
-    <button class="btn" @click="goToHome">跳转到首页</button>
+
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
+import useCloudFiles from '@/utils/useCloudFiles';
 
-const title = ref('Hello World - Updated')
+const title = ref('点击进入天天考试')
+const fadeOpacity = ref(1)
+const isFading = ref(false)
+const bgImageUrl = useCloudFiles(['/static/img/bg-3.png'])
 
-const goToHome = () => {
-  uni.navigateTo({
-    url: '/pages/home/home'
-  })
+const handleClick = () => {
+  if (isFading.value) return // 防止重复点击
+  
+  isFading.value = true
+  
+  // 使用setInterval实现平滑淡出，确保uni-app兼容性
+  const duration = 2000 // 淡出持续时间
+  const frameRate = 60 // 帧率
+  const totalFrames = duration / (1000 / frameRate)
+  let currentFrame = 0
+  
+  const interval = setInterval(() => {
+    currentFrame++
+    const progress = Math.min(currentFrame / totalFrames, 1)
+    
+    // 计算当前透明度，使用ease-out缓动函数
+    fadeOpacity.value = 1 - (1 - Math.pow(1 - progress, 3))
+    
+    if (progress >= 0.5) {
+      clearInterval(interval)
+      uni.redirectTo({
+        url: '/pages/home/home'
+      })
+    }
+  }, 1000 / frameRate)
 }
 </script>
 
 <style lang="scss">
 @import './index.scss';
-
-.btn {
-  margin-top: 50rpx;
-  padding: 20rpx 40rpx;
-  background-color: #007aff;
-  color: #fff;
-  border-radius: 10rpx;
-  font-size: 32rpx;
-}
 </style>

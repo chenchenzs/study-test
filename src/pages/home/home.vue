@@ -8,9 +8,6 @@
         <text class="module-title">JavaScript小测</text>
       </view>
 
-      <!-- <view class="module-item learning-test">
-        <text class="module-title">期周考试</text>
-      </view> -->
     </view>
 
   </view>

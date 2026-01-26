@@ -1,29 +1,27 @@
 <template>
     <view class="content">
         <swiper class="swiper-wrapper" @change="change" @click="click">
-            <swiper-item class="swiper-item" v-for="(item, index) in list1" :key="index">
+            <swiper-item class="swiper-item" v-for="(item, index) in examList" :key="item.id">
                 <view class="item-wrap">
                     <view class="item-title">
-                        <text>第{{ index + 1 }}/{{ list1.length }}题：{{ item.name }}</text>
+                        <text>第{{ index + 1 }}/{{ examList.length }}题：{{ item.title }}</text>
                         <image :src="iconUrl[0]" class="right-icon" @click="handleIconClick(item, index)" />
                     </view>
                     <view class="item-content">
-                        <u-parse :content="codeRender(item.basicContent)"></u-parse>
+                        <u-parse :content="codeRender(item.code)"></u-parse>
                     </view>
                     <view class="item-input">
-                        <u-input placeholder="请输入"></u-input>
+                        <u-input v-model="item.answer" placeholder="请输入"></u-input>
+                        <button v-if="examList.every((item) => item.answer)"  @click="handleSubmit">提交</button>
                     </view>
                 </view>
             </swiper-item>
         </swiper>
-        <u-modal :show="visible" title="当前答题情况" :show-confirm-button="false" :close-on-click-overlay="true" @close="handleClose">
+        <u-modal :show="visible" title="当前答题情况" :show-confirm-button="false" :close-on-click-overlay="true"
+            @close="handleClose">
             <view class="modal-content" style="text-align: left !important;">
                 <view class="question-status-container" style="justify-content: flex-start !important;">
-                    <view 
-                        v-for="(item, index) in list1" 
-                        :key="index" 
-                        class="question-circle"
-                    >
+                    <view v-for="(item, index) in examList" :key="index" class="question-circle" :class="{ 'completed': item.answer && item.answer.trim() }">
                         {{ index + 1 }}
                     </view>
                 </view>
@@ -33,26 +31,15 @@
 </template>
 
 <script setup lang="ts">
-import { onLoad } from '@dcloudio/uni-app';
+import { onLoad, onUnload } from '@dcloudio/uni-app';
 import { ref } from 'vue'
 import useCloudFiles from '@/utils/useCloudFiles';
-const iconUrl = useCloudFiles(['/static/img/icon-2.avif'])
-const id = ref('');
-const visible = ref(false);
+import { useExamStore } from '@/store/exam';
+const examStore = useExamStore();
+const { examList } = examStore;
 
-const list1 = ref([
-    {
-        name: '变量-1',
-        id: 'week1-1',
-        basicContent: `console.log(fruit);\r\nvar fruit = 'apple';`
-    },
-    {
-        name: '测试项2',
-        id: 'week1-2',
-        basicContent: `console.log(animal);
-let animal = 'cat';`
-    }
-])
+const iconUrl = useCloudFiles(['/static/img/icon-2.avif'])
+const visible = ref(false);
 
 const change = (e: any) => {
     console.log(e)
@@ -73,17 +60,27 @@ const handleClose = () => {
     visible.value = false;
 }
 
+const handleSubmit = () => {
+   console.log(examList,'提交');
+}
+
 // 处理右侧图标点击事件
 const handleIconClick = (item: any, index: number) => {
     console.log('点击了图标:', item, index);
+    console.log(examList);
+
     visible.value = true;
     // 可以在这里添加具体的业务逻辑，比如查看解析、提示信息等
 }
 
 onLoad((options) => {
     console.log(options)
-    id.value = options?.id;
 })
+
+onUnload(() => {
+    examStore.resetExamList();
+})
+
 </script>
 
 <style lang="scss">

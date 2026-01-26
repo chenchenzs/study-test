@@ -164,11 +164,24 @@
     transition: all 0.3s ease;
 }
 
+// 已完成题目样式
+.question-circle.completed {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+}
+
 // 题目圆圈悬停效果
 .question-circle:hover {
     transform: scale(1.1);
     border-color: #8a2be2;
     box-shadow: 0 4rpx 12rpx rgba(138, 43, 226, 0.2);
+}
+
+// 已完成题目悬停效果
+.question-circle.completed:hover {
+    border-color: #45a049;
+    box-shadow: 0 4rpx 12rpx rgba(76, 175, 80, 0.3);
 }
 
 // 后续可以根据做题情况添加不同状态的样式

@@ -1,10 +1,10 @@
 <template>
   <view class="content">
     <u-collapse>
-      <u-collapse-item title="第一周" name="week1">
-        <view class="week-item" v-for="(item, index) in indexList" :key="item.id" :title="item.title"
-          @click="() => handleItem(item)">
-          {{ index + 1 + '. ' + item.name }}
+      <u-collapse-item v-for="(item) in studyWeekData" :key="item.id" :title="item.title">
+        <view class="week-item" v-for="(content, index) in item.content" :key="content.id"  
+          @click="() => handleItem(content)">
+          {{ index + 1 + '. ' + content.name }}
         </view>
       </u-collapse-item>
     </u-collapse>
@@ -12,30 +12,30 @@
 </template>
 
 <script setup lang="ts">
-import { onLoad, onReady, onShow } from '@dcloudio/uni-app';
-import { ref } from 'vue'
-const title = ref('javascript小测');
-// 直接在setup中初始化数据，不依赖生命周期
-const indexList = ref<any[]>();
+import studyWeekData from '@/config/studyWeekData';
+import useDatabase from '@/utils/useDatabase';
+import { useExamStore } from '@/store/exam';
+const examStore = useExamStore();
 
-const handleItem = (item: any) => {
-  console.log(item)
+const db = useDatabase('testData');
+const handleItem = async (item: any) => {
+  console.log(item);
+  const res = await db.where({ type: item.type }).get()
+  if(res?.data?.length) {
+   examStore.setExamList(res?.data)
+  }else{
+    uni.showToast({
+      title: '暂无该类型考试',
+      icon: 'none'
+    })
+    return 
+  }
+
   uni.navigateTo({
-    url: '/pages/exam/examination/examination?id=' + item.id
+    url: '/pages/exam/examination/examination?id=' + item.type
   })
 }
 
-
-
-onLoad(() => {
-
-  indexList.value = [
-    { name: '变量、数据类型', id: 'week1-1' },
-    { name: '变量的解构赋值', id: 'week1-2' },
-    { name: '变量的解构赋值', id: 'week1-3' },
-  ];
-
-});
 </script>
 
 <style lang="scss">

@@ -10,8 +10,8 @@
                     <text class="record-name">{{ item.examName }}</text>
                     <text class="record-time">{{ formatTime(item.time) }}</text>
                 </view>
-                <view class="record-action">
-                    <button class="view-btn" @click="handleView(item)">查看</button>
+                <view class="record-action" @click="handleView(item)">
+                    <view class="arrow-icon"></view>
                 </view>
             </view>
             

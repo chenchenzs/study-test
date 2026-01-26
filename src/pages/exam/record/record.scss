@@ -51,27 +51,28 @@
 
 .record-action {
     margin-left: 20rpx;
-}
-
-.view-btn {
-    background: linear-gradient(135deg, #b19696 0%, #252d2f 100%);
-    color: #ffffff;
-    border: none;
-    border-radius: 50rpx;
-    padding: 15rpx 44rpx;
-    font-size: 28rpx;
-    font-weight: 500;
-    box-shadow: 0 6rpx 16rpx rgba(255, 154, 158, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    box-shadow: 0 4rpx 12rpx rgba(255, 154, 158, 0.3);
     transition: all 0.3s ease;
 
-    &::after {
-        border: none;
-    }
-
     &:active {
-        transform: scale(0.95);
-        box-shadow: 0 3rpx 8rpx rgba(255, 154, 158, 0.3);
+        transform: scale(0.9);
+        box-shadow: 0 2rpx 6rpx rgba(255, 154, 158, 0.4);
     }
+}
+
+.arrow-icon {
+    width: 16rpx;
+    height: 16rpx;
+    border-top: 4rpx solid #ffffff;
+    border-right: 4rpx solid #ffffff;
+    transform: rotate(45deg);
 }
 
 .empty-state {

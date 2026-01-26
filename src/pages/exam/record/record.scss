@@ -1,5 +1,87 @@
-.content{
-    width:100vw;
-    height:100vh;
+.content {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(36, 45, 188, 0.7411764706) 0%, rgb(192 148 99 / 79%) 50%, #877e3c 100%);
+    display: flex;
+    flex-direction: column;
+}
 
+.record-list {
+    flex: 1;
+    padding: 30rpx;
+    overflow-y: auto;
+}
+
+.record-item {
+    background: linear-gradient(135deg, #fff8f0 0%, #fff5e6 100%);
+    border-radius: 24rpx;
+    padding: 32rpx;
+    margin-bottom: 24rpx;
+    box-shadow: 0 8rpx 24rpx rgba(252, 182, 159, 0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    border: 2rpx solid rgba(252, 182, 159, 0.15);
+
+    &:active {
+        transform: scale(0.98);
+        box-shadow: 0 4rpx 12rpx rgba(252, 182, 159, 0.35);
+    }
+}
+
+.record-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14rpx;
+}
+
+.record-name {
+    font-size: 32rpx;
+    font-weight: 600;
+    color: #6b84ff;
+    line-height: 1.4;
+}
+
+.record-time {
+    font-size: 24rpx;
+    color: #7a8aff;
+}
+
+.record-action {
+    margin-left: 20rpx;
+}
+
+.view-btn {
+    background: linear-gradient(135deg, #b19696 0%, #252d2f 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 50rpx;
+    padding: 15rpx 44rpx;
+    font-size: 28rpx;
+    font-weight: 500;
+    box-shadow: 0 6rpx 16rpx rgba(255, 154, 158, 0.4);
+    transition: all 0.3s ease;
+
+    &::after {
+        border: none;
+    }
+
+    &:active {
+        transform: scale(0.95);
+        box-shadow: 0 3rpx 8rpx rgba(255, 154, 158, 0.3);
+    }
+}
+
+.empty-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100rpx 0;
+}
+
+.empty-text {
+    font-size: 28rpx;
+    font-weight: 500;
 }

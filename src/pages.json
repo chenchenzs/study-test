@@ -21,7 +21,13 @@
 		{
 			"path": "pages/exam/examination/examination",
 			"style": {
-				"navigationBarTitleText": "考试中..."
+				"navigationBarTitleText": "测试中..."
+			}
+		},
+		{
+			"path": "pages/exam/record/record",
+			"style": {
+				"navigationBarTitleText": "测试记录"
 			}
 		}
 	],

@@ -232,3 +232,32 @@
 .u-input:focus-within .u-input__placeholder {
     opacity: 0.4 !important;
 }
+
+// 提交按钮样式
+.item-input button {
+    display: block;
+    width: 70%;
+    height: 80rpx;
+    margin-top: 260rpx; /* 向下移动，增加上边距 */
+    background: linear-gradient(135deg, #8a2be2 0%, #9326e1df 100%);
+    color: white;
+    border: none;
+    border-radius: 16rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4rpx 12rpx rgba(138, 43, 226, 0.3);
+}
+
+.item-input button:hover {
+    background: linear-gradient(135deg, #7b25c9 0%, #8522ce 100%);
+    box-shadow: 0 6rpx 16rpx rgba(138, 43, 226, 0.4);
+    transform: translateY(-2rpx);
+}
+
+.item-input button:active {
+    background: linear-gradient(135deg, #6d1fb8 0%, #751db0 100%);
+    box-shadow: 0 2rpx 8rpx rgba(138, 43, 226, 0.3);
+    transform: translateY(0);
+}

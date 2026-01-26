@@ -13,14 +13,13 @@
 
 <script setup lang="ts">
 import studyWeekData from '@/config/studyWeekData';
-import useDatabase from '@/utils/useDatabase';
 import { useExamStore } from '@/store/exam';
+import { getTestData } from '@/service/exam';
 const examStore = useExamStore();
 
-const db = useDatabase('testData');
 const handleItem = async (item: any) => {
   console.log(item);
-  const res = await db.where({ type: item.type }).get()
+  const res = await getTestData(item.type);
   if(res?.data?.length) {
    examStore.setExamList(res?.data)
   }else{
@@ -32,7 +31,7 @@ const handleItem = async (item: any) => {
   }
 
   uni.navigateTo({
-    url: '/pages/exam/examination/examination?id=' + item.type
+    url: `/pages/exam/examination/examination?id=${item.type}&name=${item.name}`
   })
 }
 

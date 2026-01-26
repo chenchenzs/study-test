@@ -16,6 +16,7 @@ export const useExamStore = defineStore('exam', {
     getters: {
         getExamList: (state) => state.examList
     },
+    
     actions: {
         setExamList(list: ExamItem[]) {
             this.examList = list

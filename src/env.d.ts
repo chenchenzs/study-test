@@ -13,3 +13,10 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+interface IQueryResult<T>{
+    data: T[];
+    errMsg: string;
+}
+
+export type IQueryResultPromise<T> = Promise<IQueryResult<T>>

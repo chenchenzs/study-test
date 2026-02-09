@@ -8,8 +8,12 @@
         <text class="module-title">JavaScript小测</text>
       </view>
 
-      <view  class="module-item knowledge-base" :style="{ backgroundColor: '#0e0d10' }" @click="handleRecord">
+      <view  class="module-item knowledge-base" :style="{ backgroundColor: '#7658b3' }" @click="handleRecord">
         <text class="module-title">测试记录</text>
+      </view>
+
+      <view  class="module-item knowledge-base" :style="{ backgroundColor: '#0e0f10' }" @click="handleAI">
+        <text class="module-title">Eddie</text>
       </view>
 
     </view>
@@ -31,6 +35,12 @@ function handleExam() {
 function handleRecord() {
   uni.navigateTo({
     url: '/pages/exam/record/record'
+  })
+}
+
+function handleAI() {
+  uni.navigateTo({
+    url: '/pages/robot/robot'
   })
 }
 

@@ -37,6 +37,8 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@cloudbase/adapter-uni-app": "^1.0.0-beta.4",
+    "@cloudbase/js-sdk": "^2.25.4",
     "@dcloudio/uni-app": "3.0.0-4080420251103001",
     "@dcloudio/uni-app-harmony": "3.0.0-4080420251103001",
     "@dcloudio/uni-app-plus": "3.0.0-4080420251103001",
@@ -55,6 +57,7 @@
     "@dcloudio/uni-quickapp-webview": "3.0.0-4080420251103001",
     "dayjs": "^1.11.19",
     "pinia": "^2.3.1",
+    "rollup-plugin-copy": "^3.5.0",
     "uview-plus": "^3.6.29",
     "vue": "^3.4.21",
     "vue-i18n": "^9.1.9"
@@ -67,6 +70,7 @@
     "@dcloudio/vite-plugin-uni": "3.0.0-4080420251103001",
     "@vue/runtime-core": "^3.4.21",
     "@vue/tsconfig": "^0.1.3",
+    "fast-glob": "^3.3.3",
     "sass": "^1.63.2",
     "typescript": "^5.9.3",
     "vite": "5.2.8",

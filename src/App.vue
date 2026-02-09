@@ -2,9 +2,9 @@
 import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
 onLaunch(() => {
   console.log("App Launch");
-  if (typeof wx !== 'undefined') {
+  if (typeof uni !== 'undefined') {
     // @ts-ignore
-    wx.cloud.init({
+    uni.cloud.init({
       env: 'cloud1-7gxx5fsl43e22b23', // 您的微信云开发环境ID
       traceUser: true // 记录用户访问日志
     });

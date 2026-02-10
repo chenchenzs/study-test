@@ -9,8 +9,12 @@ export default defineConfig({
     copy({
       targets: [
         {
-          src: "cloudfunctions",
-          dest: "dist/dev/mp-weixin"
+          src: ["cloudfunctions/agent-ccrobot-1grve963ce7548e6/*", "!cloudfunctions/agent-ccrobot-1grve963ce7548e6/node_modules"],
+          dest: "dist/dev/mp-weixin/cloudfunctions/agent-ccrobot-1grve963ce7548e6"
+        },
+        {
+          src: "cloudfunctions/aiserver",
+          dest: "dist/dev/mp-weixin/cloudfunctions"
         }
       ],
       hook: "buildEnd",

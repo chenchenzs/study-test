@@ -1,0 +1,64 @@
+.message-card {
+  display: flex;
+  margin-bottom: 30rpx;
+  align-items: flex-start;
+
+  &.user {
+    flex-direction: row-reverse;
+
+    .bubble {
+      background: #007aff;
+      color: #fff;
+      border-radius: 20rpx 20rpx 0 20rpx;
+      margin-right: 20rpx;
+    }
+
+    .message-time {
+      text-align: right;
+    }
+  }
+
+  &.robot {
+    flex-direction: row;
+
+    .bubble {
+      background: #fff;
+      color: #333;
+      border-radius: 20rpx 20rpx 20rpx 0;
+      margin-left: 20rpx;
+    }
+  }
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #f0f0f0;
+}
+
+.bubble {
+  max-width: 70%;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.message-text {
+  word-wrap: break-word;
+  word-break: break-all;
+  line-height: 1.5;
+  font-size: 28rpx;
+}
+
+.message-time {
+  display: block;
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 10rpx;
+}
+
+.robot .message-time {
+  color: #999;
+}

@@ -10,9 +10,9 @@
       </scroll-view>
     </view>
     <view class="inputArea">
-      <up-input placeholder="请输入内容" border="surround" v-model="userInPut" @change="handleInput">
+      <up-input placeholder="请输入内容" shape="circle" v-model="userInPut" @change="handleInput">
         <template #suffix>
-          <up-button @tap="handleSend" text="发送" type="success" size="mini"></up-button>
+          <up-button @tap="handleSend" text="发送" type="success" shape="circle"></up-button>
         </template>
       </up-input>
     </view>

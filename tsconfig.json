@@ -1,12 +1,14 @@
 {
   "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
+    "target": "es2015",
+    "module": "esnext",
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
-    "lib": ["esnext", "dom"],
+    "lib": ["es2015", "dom"],
     "types": ["@dcloudio/types"]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]

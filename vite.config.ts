@@ -13,8 +13,8 @@ export default defineConfig({
           dest: "dist/dev/mp-weixin/cloudfunctions/agent-ccrobot-1grve963ce7548e6"
         },
         {
-          src: "cloudfunctions/aiserver",
-          dest: "dist/dev/mp-weixin/cloudfunctions"
+          src: ["cloudfunctions/aiserver/*", "!cloudfunctions/aiserver/node_modules"],
+          dest: "dist/dev/mp-weixin/cloudfunctions/aiserver"
         }
       ],
       hook: "buildEnd",
@@ -26,4 +26,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  esbuild: {
+    target: "es2015",
+    supported: {
+      "nullish-coalescing": false
+    }
+  }
 });

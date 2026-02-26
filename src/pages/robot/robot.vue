@@ -4,13 +4,12 @@
     <view class="messageList">
       <scroll-view class="scroll-list" scroll-y>
         <view v-for="(msg, index) in messageList" :key="index" :id="'msg-' + index" class="message-item">
-          <MessageCard :type="index % 2 === 0 ? 'user' : 'robot'" :message="String(msg)"
-            :avatar="index % 2 === 0 ? userAvatar : robotAvatar" :time="new Date().toLocaleTimeString()" />
+          <MessageCard :type="msg.type" :message="String(msg.message)" :time="msg.time" />
         </view>
       </scroll-view>
     </view>
     <view class="inputArea">
-      <up-input placeholder="请输入内容" shape="circle" v-model="userInPut" @change="handleInput">
+      <up-input placeholder="请输入内容" shape="circle" v-model="userInPut">
         <template #suffix>
           <up-button @tap="handleSend" text="发送" type="success" shape="circle"></up-button>
         </template>
@@ -25,25 +24,54 @@ import { ref } from 'vue'
 import useCloudbase from '@/utils/useCloudbase';
 import MessageCard from '@/components/MessageCard.vue';
 
-const messageList = ref(Array.from({ length: 99 }).map((v, index) => index));
+const messageList = ref<{ type: 'user' | 'robot'; message: string; time: string; }[]>([
+  {
+    type: 'user',
+    message: 'hello~',
+    time: new Date().toLocaleTimeString()
+  },
+  {
+    type: 'robot',
+    message: '你好，我是robot',
+    time: new Date().toLocaleTimeString()
+  },
+]);
 
-const userAvatar = ref('');
 const userInPut = ref('');
-const robotAvatar = ref('/static/img/avatar-robot.jpg');
+const loading = ref(false);
 
 const handleInput = (v) => {
   console.log(v);
 }
 
 const handleSend = (v) => {
-  console.log(v);
-}
+  console.log('userInPut', userInPut.value);
+  messageList.value.push({
+    type: 'user',
+    message: userInPut.value,
+    time: new Date().toLocaleTimeString()
+  }); 
+  loading.value = true;
+   messageList.value.push({
+    type: 'robot',
+    message: '正在思考中...',
+    time: new Date().toLocaleTimeString()
+  }); 
+  loading.value = true;
+  useCloudbase({
+    userInput: userInPut.value
+  }, "aiserver").then(res => {
+    loading.value = false;
+    messageList.value.pop();
+    messageList.value.push({
+      type: 'robot',
+      message: res?.result?.content?.kwargs?.content || '',
+      time: new Date().toLocaleTimeString()
+    });
+  })
+  userInPut.value = '';
 
-useCloudbase({
-  msg: "你好"
-}, "aiserver").then(res => {
-  console.log(res)
-})
+}
 
 </script>
 <style lang="scss">

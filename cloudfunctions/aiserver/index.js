@@ -14,11 +14,10 @@ exports.main = async (event, context) => {
     temperature: 0.7,
   });
 
-  const res = await model.invoke([new HumanMessage("介绍一下你自己,你是一只胡萝卜")]);
-  console.log(res);
+  const res = await model.invoke([new HumanMessage(event?.userInput)]);
+
   return {
     content: res,
-    inner: '123456',
     event,
     context,
   };

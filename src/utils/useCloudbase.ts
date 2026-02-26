@@ -25,7 +25,5 @@ export default async function useCloudbase(data: any,name="agent-ccrobot-1grve96
         name,
         data
     });
-    console.log('resssss',res);
-    
     return res
 };

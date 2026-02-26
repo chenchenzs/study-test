@@ -4,14 +4,14 @@
     <view class="messageList">
       <scroll-view class="scroll-list" scroll-y>
         <view v-for="(msg, index) in messageList" :key="index" :id="'msg-' + index" class="message-item">
-          <MessageCard :type="msg.type" :message="String(msg.message)" :time="msg.time" />
+          <MessageCard :type="msg.type" :message="String(msg.message)" :time="msg.time" :isPast="msg.isPast" />
         </view>
       </scroll-view>
     </view>
     <view class="inputArea">
       <up-input placeholder="请输入内容" shape="circle" v-model="userInPut">
         <template #suffix>
-          <up-button @tap="handleSend" text="发送" type="success" shape="circle"></up-button>
+          <up-button :disabled="loading" @tap="handleSend" text="发送" type="success" shape="circle"></up-button>
         </template>
       </up-input>
     </view>
@@ -20,11 +20,11 @@
 
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import useCloudbase from '@/utils/useCloudbase';
 import MessageCard from '@/components/MessageCard.vue';
 
-const messageList = ref<{ type: 'user' | 'robot'; message: string; time: string; }[]>([
+const messageList = ref<{ type: 'user' | 'robot'; message: string; time: string; isPast?: boolean }[]>([
   {
     type: 'user',
     message: 'hello~',
@@ -33,6 +33,7 @@ const messageList = ref<{ type: 'user' | 'robot'; message: string; time: string;
   {
     type: 'robot',
     message: '你好，我是robot',
+    isPast: true,
     time: new Date().toLocaleTimeString()
   },
 ]);
@@ -50,24 +51,29 @@ const handleSend = (v) => {
     type: 'user',
     message: userInPut.value,
     time: new Date().toLocaleTimeString()
-  }); 
+  });
   loading.value = true;
-   messageList.value.push({
+  messageList.value.push({
     type: 'robot',
     message: '正在思考中...',
     time: new Date().toLocaleTimeString()
-  }); 
+  });
   loading.value = true;
   useCloudbase({
     userInput: userInPut.value
   }, "aiserver").then(res => {
+    console.log('res', res);
+
     loading.value = false;
     messageList.value.pop();
-    messageList.value.push({
-      type: 'robot',
-      message: res?.result?.content?.kwargs?.content || '',
-      time: new Date().toLocaleTimeString()
-    });
+    nextTick(() => {
+      messageList.value.push({
+        type: 'robot',
+        message: res?.result?.content?.kwargs?.content || '',
+        time: new Date().toLocaleTimeString()
+      });
+    })
+
   })
   userInPut.value = '';
 

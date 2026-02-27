@@ -4,7 +4,7 @@ import { PUBLIC_KEY } from "@/config";
 
 // 传入配置选项
 const options = {
-  uni: uni // 传入 uni 对象，用于图形验证码功能
+  uni: uni, // 传入 uni 对象，用于图形验证码功能
 };
 
 cloudbaseSDK.useAdapters(adapter, options);
@@ -15,15 +15,15 @@ const cloudbase = cloudbaseSDK.init({
   // 地域
   region: "ap-shanghai",
   accessKey: PUBLIC_KEY,
-
+  // 全局超时时间
+  timeout: 60000,
 });
-
 
 export default async function useCloudbase(data: any,name="agent-ccrobot-1grve963ce7548e6") {
 
     const res = await cloudbase.callFunction({
         name,
-        data
+        data,
     });
     return res
 };

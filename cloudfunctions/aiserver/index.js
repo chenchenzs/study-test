@@ -15,7 +15,7 @@ exports.main = async (event, context) => {
   });
 
   const res = await model.invoke([new HumanMessage(event?.userInput)]);
-
+  
   return {
     content: res,
     event,
